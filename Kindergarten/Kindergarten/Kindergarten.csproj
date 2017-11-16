@@ -85,6 +85,13 @@
     <Compile Include="Protokoll_Betreuer.Designer.cs">
       <DependentUpon>Protokoll_Betreuer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Registrierung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrierung.Designer.cs">
+      <DependentUpon>Registrierung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SHA1.cs" />
     <Compile Include="Verwaltung.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Protokoll_Betreuer.resx">
       <DependentUpon>Protokoll_Betreuer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrierung.resx">
+      <DependentUpon>Registrierung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Verwaltung.resx">
       <DependentUpon>Verwaltung.cs</DependentUpon>
