@@ -11,25 +11,25 @@ using MySql.Data.MySqlClient;
 
 namespace Kindergarten
 
-
-
 {
 
     public partial class Startseite : Form
     {
+        MySqlConnection con = new MySqlConnection("server = eduweb.kb.local; user id = team03; password = T3amO3; database = team03");
+
         private MySqLConnection conn;
         private string server;
         private string database;
         private string lid;
         private string benutzername;
         private string passwort;
-
+        
         public Startseite()
         {
             server = "localhost";
             database = "Kindergarten";
             lid = "team03";
-            passwort = ""
+            passwort = "";
 
             InitializeComponent();
         }
