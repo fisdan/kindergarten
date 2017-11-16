@@ -16,6 +16,7 @@ namespace Kindergarten
     public partial class Startseite : Form
     {
         MySqlConnection con = new MySqlConnection("server = eduweb.kb.local; user id = team03; password = T3amO3; database = team03");
+        //http://web.hak-kitz.at/dbv/index.php
 
         private MySqLConnection conn;
         private string server;
