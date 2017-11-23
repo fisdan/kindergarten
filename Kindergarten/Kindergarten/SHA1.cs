@@ -4,22 +4,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 
-namespace Kindergarten
+namespace Hash
 {
-    class SHA1
+    public static class SHA01
     {
-        string Hashing(string input)
+        public static string Hashing(string input)
         {
             byte[] hash;
 
             using (var sha1 = new SHA1CryptoServiceProvider())
             {
-                hash = sha1.ComputeHash(Encoding.Unicode.GetBytes(input))
+                hash = sha1.ComputeHash(Encoding.Unicode.GetBytes(input));
             }
 
             var sb = new StringBuilder();
-            foreach (byte b in hash) sb.AppendFormat("0:x2");
-            //11:18 https://www.youtube.com/watch?v=ltPcmWu0CIo
+            foreach (byte b in hash) sb.AppendFormat("0:x2", b);
+            return sb.ToString();
         }
     }
 }

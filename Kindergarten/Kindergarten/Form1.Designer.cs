@@ -1,6 +1,6 @@
 ﻿namespace Kindergarten
 {
-    partial class Startseite
+    partial class Form1
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Startseite));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txb_Benutzername = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_Anmelden = new System.Windows.Forms.Button();
             this.lbl_Kennwort = new System.Windows.Forms.Label();
-            this.txb_Kennwort = new System.Windows.Forms.TextBox();
+            this.txb_Passwort = new System.Windows.Forms.TextBox();
             this.lbl_Benutzername = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -83,7 +83,7 @@
             this.groupBox1.Controls.Add(this.btn_Anmelden);
             this.groupBox1.Controls.Add(this.txb_Benutzername);
             this.groupBox1.Controls.Add(this.lbl_Kennwort);
-            this.groupBox1.Controls.Add(this.txb_Kennwort);
+            this.groupBox1.Controls.Add(this.txb_Passwort);
             this.groupBox1.Controls.Add(this.lbl_Benutzername);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.White;
@@ -107,7 +107,7 @@
             this.btn_Anmelden.TabIndex = 4;
             this.btn_Anmelden.Text = "Anmelden";
             this.btn_Anmelden.UseVisualStyleBackColor = false;
-            this.btn_Anmelden.Click += new System.EventHandler(this.button1_Click);
+            this.btn_Anmelden.Click += new System.EventHandler(this.btn_Anmelden_Click);
             // 
             // lbl_Kennwort
             // 
@@ -121,12 +121,12 @@
             this.lbl_Kennwort.Text = "Kennwort";
             this.lbl_Kennwort.Click += new System.EventHandler(this.label2_Click);
             // 
-            // txb_Kennwort
+            // txb_Passwort
             // 
-            this.txb_Kennwort.Location = new System.Drawing.Point(133, 97);
-            this.txb_Kennwort.Name = "txb_Kennwort";
-            this.txb_Kennwort.Size = new System.Drawing.Size(230, 29);
-            this.txb_Kennwort.TabIndex = 1;
+            this.txb_Passwort.Location = new System.Drawing.Point(133, 97);
+            this.txb_Passwort.Name = "txb_Passwort";
+            this.txb_Passwort.Size = new System.Drawing.Size(230, 29);
+            this.txb_Passwort.TabIndex = 1;
             // 
             // lbl_Benutzername
             // 
@@ -209,7 +209,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::Kindergarten.Properties.Resources.background;
-            this.ClientSize = new System.Drawing.Size(1914, 1036);
+            this.ClientSize = new System.Drawing.Size(1908, 1036);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -237,7 +237,7 @@
         private System.Windows.Forms.TextBox txb_Benutzername;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lbl_Kennwort;
-        private System.Windows.Forms.TextBox txb_Kennwort;
+        private System.Windows.Forms.TextBox txb_Passwort;
         private System.Windows.Forms.Label lbl_Benutzername;
         private System.Windows.Forms.Button btn_Anmelden;
         private System.Windows.Forms.Label label5;

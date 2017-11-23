@@ -8,18 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.IO;
+using Hash;
 
 namespace Kindergarten
 
 {
 
-    public partial class Startseite : Form
+    public partial class Form1 : Form
     {
         MySqlConnection con = new MySqlConnection("server = eduweb.kb.local; user id = team03; password = T3amO3; database = team03");
         //http://web.hak-kitz.at/dbv/index.php
+        public string salt = "98uQhgtü0wAzt";
 
-        
-        public Startseite()
+        public Form1()
         {
 
         }
@@ -32,11 +34,6 @@ namespace Kindergarten
         private void label2_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -65,13 +62,45 @@ namespace Kindergarten
 
         private void Startseite_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             Verwaltung a = new Verwaltung();
             a.Show();
+        }
+
+        private void btn_Anmelden_Click(object sender, EventArgs e)
+        {
+            if (txb_Benutzername.Text.Length < 3 || txb_Passwort.Text.Length < 3)
+            {
+                MessageBox.Show("Benutzername oder Passwort ist falsch!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (Directory.Exists($"/data/users/{txb_Benutzername}"))
+                {
+                    MessageBox.Show("Benutzername oder Passwort ist falsch!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    StreamReader sr = new StreamReader($"data/users/{txb_Benutzername}/data.ls");
+                    string user = sr.ReadLine();
+                    string passhash = sr.ReadLine();
+                    sr.Close();
+
+                    string thispass = SHA01.Hashing(SHA01.Hashing(txb_Passwort.Text + salt));
+                    if(user == txb_Benutzername.Text && passhash == thispass) //== muss durch equal ersetzt werden
+                    {
+                        MessageBox.Show($"Willkommen {user}!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Benutzername oder Passwort ist falsch!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

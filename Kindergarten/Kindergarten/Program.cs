@@ -16,7 +16,7 @@ namespace Kindergarten
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Startseite());
+            Application.Run(new Form1());
         }
     }
 }
