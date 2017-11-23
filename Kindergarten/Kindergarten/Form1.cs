@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
 using Hash;
+using System.Data.SqlClient;
 
 namespace Kindergarten
 
@@ -23,7 +24,7 @@ namespace Kindergarten
 
         public Form1()
         {
-
+            InitializeComponent();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -73,6 +74,26 @@ namespace Kindergarten
 
         private void btn_Anmelden_Click(object sender, EventArgs e)
         {
+
+            {
+                SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\RanBahadurBK\Documents\testlogin.mdf;Integrated Security=True;Connect Timeout=30");
+                SqlDataAdapter sda = new SqlDataAdapter("select count(*) from login where username ='" + txb_Benutzername.Text + "' and password='" + txb_Passwort.Text + "'", conn);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if (dt.Rows[0][0].ToString() == "1")
+                {
+                    this.Hide();
+                    Main mm = new Main();
+                    mm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Bitte geben sie ein gültiges Passwort mit Benutzer ein", "Achtung", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+
+
             if (txb_Benutzername.Text.Length < 3 || txb_Passwort.Text.Length < 3)
             {
                 MessageBox.Show("Benutzername oder Passwort ist falsch!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -101,6 +122,12 @@ namespace Kindergarten
                     }
                 }
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Registrierung a = new Registrierung();
+            a.Show();
         }
     }
 }

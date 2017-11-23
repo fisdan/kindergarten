@@ -34,12 +34,13 @@ namespace Kindergarten
             }
             else
             {
-                if(Directory.Exists($"data/users/{txb_Benutzername}"))
+                if(Directory.Exists($"//data/users/{txb_Benutzername}"))
                 {
                     MessageBox.Show("Benutzername existiert bereits!");
                 }
                 else
                 {
+                    Directory.CreateDirectory($"data/users/{txb_Benutzername}");
                     StreamWriter sw = new StreamWriter($"data/users/{txb_Benutzername}/data.ls");
                     sw.WriteLine(txb_Benutzername);
                     sw.WriteLine(SHA01.Hashing(SHA01.Hashing(txb_Passwort.Text+salt)));
