@@ -19,8 +19,6 @@ namespace Kindergarten
     public partial class Form1 : Form
     {
         MySqlConnection con = new MySqlConnection("server = eduweb.kb.local; user id = team03; password = T3amO3; database = team03");
-        //http://web.hak-kitz.at/dbv/index.php
-        public string salt = "98uQhgtü0wAzt";
 
         public Form1()
         {
@@ -74,54 +72,41 @@ namespace Kindergarten
 
         private void btn_Anmelden_Click(object sender, EventArgs e)
         {
+            MySqlConnection con = new MySqlConnection("server = eduweb.kb.local; user id = team03; password = T3amO3; database = team03");
+            MySqlCommand get_user = new MySqlCommand("", con);
+            get_user.CommandText = string.Format("select Benutzername from login where Benutzername = '{0}'", txb_Benutzername.Text);
+            MySqlCommand get_passwort = new MySqlCommand("", con);
+            get_passwort.CommandText = string.Format("select Passwort from login where Passwort = '{0}'", txb_Passwort.Text);
+            MySqlCommand get_benutzergruppe = new MySqlCommand("", con);
+            get_benutzergruppe.CommandText = string.Format("select Benutzergruppe from login where Benutzername = '{0}'", txb_Benutzername.Text);
+            con.Open();
 
+
+            string benutzer = Convert.ToString(get_user.ExecuteScalar());
+            string passwort = Convert.ToString(get_passwort.ExecuteScalar());
+            string benutzergruppe = Convert.ToString(get_benutzergruppe.ExecuteScalar());
+
+            if (txb_Benutzername.Text == benutzer && txb_Passwort.Text == passwort && benutzergruppe == "Admin")
             {
-                SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\RanBahadurBK\Documents\testlogin.mdf;Integrated Security=True;Connect Timeout=30");
-                SqlDataAdapter sda = new SqlDataAdapter("select count(*) from login where username ='" + txb_Benutzername.Text + "' and password='" + txb_Passwort.Text + "'", conn);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                if (dt.Rows[0][0].ToString() == "1")
-                {
-                    this.Hide();
-                    Main mm = new Main();
-                    mm.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Bitte geben sie ein gültiges Passwort mit Benutzer ein", "Achtung", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                Verwaltung admin = new Verwaltung();
+                this.Hide();
+                admin.ShowDialog();
             }
-
-
-
-            if (txb_Benutzername.Text.Length < 3 || txb_Passwort.Text.Length < 3)
+            else if(txb_Benutzername.Text == benutzer && txb_Passwort.Text == passwort && benutzergruppe == "Eltern")
             {
-                MessageBox.Show("Benutzername oder Passwort ist falsch!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Protokoll eltern = new Protokoll();
+                this.Hide();
+                eltern.ShowDialog();
+            }
+            else if (txb_Benutzername.Text == benutzer && txb_Passwort.Text == passwort && benutzergruppe == "Betreuer")
+            {
+                MitarbeiterÜbersicht mitarbeiter = new MitarbeiterÜbersicht();
+                this.Hide();
+                mitarbeiter.ShowDialog();
             }
             else
             {
-                if (Directory.Exists($"/data/users/{txb_Benutzername}"))
-                {
-                    MessageBox.Show("Benutzername oder Passwort ist falsch!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    StreamReader sr = new StreamReader($"data/users/{txb_Benutzername}/data.ls");
-                    string user = sr.ReadLine();
-                    string passhash = sr.ReadLine();
-                    sr.Close();
-
-                    string thispass = SHA01.Hashing(SHA01.Hashing(txb_Passwort.Text + salt));
-                    if(user == txb_Benutzername.Text && passhash == thispass) //== muss durch equal ersetzt werden
-                    {
-                        MessageBox.Show($"Willkommen {user}!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Benutzername oder Passwort ist falsch!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //Daniel
-                    }
-                }
+                MessageBox.Show("Login ist fehlgeschlagen");
             }
         }
 
@@ -129,6 +114,11 @@ namespace Kindergarten
         {
             Registrierung a = new Registrierung();
             a.Show();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

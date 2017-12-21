@@ -21,5 +21,10 @@ namespace Kindergarten
         {
             //asd
         }
+
+        private void Mitarbeiterverwaltung_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
     }
 }

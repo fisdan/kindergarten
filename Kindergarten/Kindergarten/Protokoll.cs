@@ -16,5 +16,10 @@ namespace Kindergarten
         {
             InitializeComponent();
         }
+
+        private void Protokoll_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
     }
 }

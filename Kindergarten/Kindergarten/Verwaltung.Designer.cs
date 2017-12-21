@@ -93,6 +93,7 @@
             this.MaximizeBox = false;
             this.Name = "Verwaltung";
             this.Text = "Verwaltung";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Verwaltung_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

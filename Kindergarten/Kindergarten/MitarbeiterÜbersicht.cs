@@ -21,5 +21,10 @@ namespace Kindergarten
         {
 
         }
+
+        private void Übersicht_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
     }
 }

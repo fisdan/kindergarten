@@ -10,44 +10,57 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
 using Hash;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
+using System.Data.Common;
 
 namespace Kindergarten
 {
     public partial class Registrierung : Form
     {
-        public string salt = "98uQhgtü0wAzt";
         public Registrierung()
         {
             InitializeComponent();
+        }       
+
+        private void btn_Registrieren_Click(object sender, EventArgs e)
+        {
+            MySqlConnection con = new MySqlConnection("server = eduweb.kb.local; user id = team03; password = T3amO3; database = team03");
+            MySqlCommand registrieren = new MySqlCommand("", con);
+            if (chk_Admin.Checked == true)
+            {
+                registrieren.CommandText = string.Format("insert into login(Benutzername, Passwort, Benutzergruppe) values ('{0}', '{1}', '{2}')", txb_Benutzername.Text, txb_Passwort.Text, "Admin");
+            }
+            if (chk_Eltern.Checked == true)
+            {
+                registrieren.CommandText = string.Format("insert into login(Benutzername, Passwort, Benutzergruppe) values ('{0}', '{1}', '{2}')", txb_Benutzername.Text, txb_Passwort.Text, "Eltern");
+            }
+            if (chk_Betreuer.Checked == true)
+            {
+                registrieren.CommandText = string.Format("insert into login(Benutzername, Passwort, Benutzergruppe) values ('{0}', '{1}', '{2}')", txb_Benutzername.Text, txb_Passwort.Text, "Betreuer");
+            }
+
+
+            con.Open();
+
+            try
+            {
+                registrieren.ExecuteNonQuery();
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Benutzer konnte nicht angelegt werden!");
+            }
         }
 
         private void btn_Abbrechen_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Environment.Exit(0);
         }
 
-        private void btn_Registrieren_Click(object sender, EventArgs e)
+        private void Registrierung_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (txb_Benutzername.Text.Length < 3 || txb_Passwort.Text.Length < 3)
-            {
-                MessageBox.Show("Benutzername oder Passwort ist zu kurz!");
-            }
-            else
-            {
-                if(Directory.Exists($"//data/users/{txb_Benutzername}"))
-                {
-                    MessageBox.Show("Benutzername existiert bereits!");
-                }
-                else
-                {
-                    Directory.CreateDirectory($"data/users/{txb_Benutzername}");
-                    StreamWriter sw = new StreamWriter($"data/users/{txb_Benutzername}/data.ls");
-                    sw.WriteLine(txb_Benutzername);
-                    sw.WriteLine(SHA01.Hashing(SHA01.Hashing(txb_Passwort.Text+salt)));
-                    sw.Close();
-                    MessageBox.Show($"Benutzer '{txb_Benutzername}' wurde erstellt!");
-                }
-            }
 
         }
     }

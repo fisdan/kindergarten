@@ -20,10 +20,18 @@ namespace Kindergarten
         private void btn_MVerwalten_Click(object sender, EventArgs e)
         {
             Mitarbeiterverwaltung a = new Mitarbeiterverwaltung();
+            this.Hide();
             a.Show();
         }
 
         private void btn_KVerwalten_Click(object sender, EventArgs e)
+        {
+            Mitarbeiterverwaltung a = new Mitarbeiterverwaltung();
+            this.Hide();
+            a.Show();
+        }
+
+        private void Verwaltung_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }

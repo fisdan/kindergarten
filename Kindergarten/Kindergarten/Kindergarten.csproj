@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cmd\CommandText.cs" />
     <Compile Include="Eintrag.cs">
       <SubType>Form</SubType>
     </Compile>

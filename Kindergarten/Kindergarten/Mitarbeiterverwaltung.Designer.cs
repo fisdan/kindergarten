@@ -97,6 +97,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Mitarbeiterverwaltung";
             this.Text = "Mitarbeiterverwaltung";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mitarbeiterverwaltung_FormClosed);
             this.Load += new System.EventHandler(this.Mitarbeiterverwaltung_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

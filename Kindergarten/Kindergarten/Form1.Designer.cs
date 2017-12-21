@@ -128,6 +128,7 @@
             this.txb_Passwort.Name = "txb_Passwort";
             this.txb_Passwort.Size = new System.Drawing.Size(230, 29);
             this.txb_Passwort.TabIndex = 1;
+            this.txb_Passwort.UseSystemPasswordChar = true;
             // 
             // lbl_Benutzername
             // 
@@ -234,6 +235,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Startseite";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Startseite_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

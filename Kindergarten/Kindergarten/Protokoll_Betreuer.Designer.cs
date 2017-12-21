@@ -172,6 +172,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Protokoll_Betreuer";
             this.Text = "Protokoll_Betreuer";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Protokoll_Betreuer_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -112,6 +112,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Eintrag";
             this.Text = "Eintrag";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Eintrag_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
